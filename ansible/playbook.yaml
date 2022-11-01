@@ -1,0 +1,39 @@
+- hosts: all
+    become: true
+    tasks:
+        - name: instalando o apache
+        apt:
+        name: apache2
+        state: present
+        update_cache: true
+        - name: alterando nome dos hosts
+        hostname:
+        name: "{{ new_hostname }}"
+- hosts: docker
+    become: true
+    tasks:
+        - name: adicionar chave GPG
+        apt_key:
+        url: [https://download.docker.com/linux/ubuntu/gpg](https://download.docker.com/linux/ubuntu/gpg)
+        state: present
+    
+    - name: adicionar repositório d0 instalador do docker
+    apt_repository:
+    repo: deb [https://download.docker.com/linux/ubuntu](https://download.docker.com/linux/ubuntu) bionic stable
+    state: present
+    
+    - name: instalar docker
+    apt:
+    name: "{{item}}"
+    state: latest
+    update_cache: yes
+    loop:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-compose
+    
+    - name: adicionar $USER no grupo Docker
+    ansible.builtin.user:
+        name: ubuntu
+        group: docker
