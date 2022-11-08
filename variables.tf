@@ -10,3 +10,6 @@ variable "ami" {
 variable "tipo_instancia" {
   default = "t2.micro"
 }
+variable "tipo_instancia_kubernetes" {
+  default = "t3.small"
+}

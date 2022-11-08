@@ -1,7 +1,9 @@
-[banana]
-banana ansible_host=172.31.13.49 new_hostname=banana 
-[laranja]
-laranja ansible_host=172.31.14.222 new_hostname=laranja
+[controlplane]
+controlplane1 ansible_host=172.31.8.211 new_hostname=controlplane1 
+
+[nodes]
+node1 ansible_host=172.31.2.166 new_hostname=node1
+node2 ansible_host=172.31.3.182 new_hostname=node2
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3 

@@ -1,11 +1,12 @@
-resource "aws_instance" "nidio_ec2" {
-  count         = 2
+resource "aws_instance" "nidio_ec2_k8s" {
+  count         = 3
   ami           = var.ami
-  instance_type = var.tipo_instancia
+  instance_type = var.tipo_instancia_kubernetes
   key_name      = "${var.usuario}-terraform-aws"
   tags = {
-    "Name" = "${var.usuario}-ec2_${count.index}"
+    "Name" = "${var.usuario}-ec2-k8s${count.index}"
   }
+  vpc_security_group_ids = ["${aws_security_group.sg_acesso_total_local.id}","${aws_security_group.sg_acesso_ssh_publico.id}" ]
 }
 
 resource "aws_instance" "nidio_ec2_ansible" {
@@ -16,6 +17,7 @@ resource "aws_instance" "nidio_ec2_ansible" {
   tags = {
     "Name" = "${var.usuario}-ec2-ansible${count.index}"
   }
+    vpc_security_group_ids = ["${aws_security_group.sg_acesso_total_local.id}","${aws_security_group.sg_acesso_ssh_publico.id}" ]
   user_data = <<-EOF
     #!/bin/bash
     sudo apt-get update

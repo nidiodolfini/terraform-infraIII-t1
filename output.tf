@@ -1,8 +1,8 @@
-output "instancia_ec2" {
-  value = aws_instance.nidio_ec2.*.public_ip
+output "instancia_ec2_k8s_publico" {
+  value = aws_instance.nidio_ec2_k8s.*.public_ip
 }
-output "instancia_ec2_private" {
-  value = aws_instance.nidio_ec2.*.private_ip
+output "instancia_ec2_k8s_private" {
+  value = aws_instance.nidio_ec2_k8s.*.private_ip
 }
 
 output "instancia_ec2_ansible" {
