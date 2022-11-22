@@ -1,5 +1,5 @@
 variable "usuario" {
-  default = "nidio"
+  default = "nidio-windows"
 }
 variable "regiao" {
   default = "sa-east-1"
