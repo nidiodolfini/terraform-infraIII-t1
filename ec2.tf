@@ -6,7 +6,7 @@ resource "aws_instance" "nidio_ec2_k8s" {
   tags = {
     "Name" = "${var.usuario}-ec2-k8s${count.index}"
   }
-  vpc_security_group_ids = ["${aws_security_group.sg_acesso_total_local.id}","${aws_security_group.sg_acesso_ssh_publico.id}" ]
+  vpc_security_group_ids = ["${aws_security_group.sg_acesso_total_local.id}","${aws_security_group.sg_acesso_ssh_publico.id}","${aws_security_group.sg_acesso_web_publico.id}"  ]
 }
 
 resource "aws_instance" "nidio_ec2_ansible" {
